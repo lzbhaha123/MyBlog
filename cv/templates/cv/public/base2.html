@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zibo's host</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% load static %}
+    <script src="{% static 'booking/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'booking/jquery/jquery.js' %}"></script>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'cv/style/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'cv/style/style.css' %}">
+  </head>
+  <body>
+    <div class="bgc">
+        <div class="navbar">
+            <div class="navbar_box">
+                <div>
+                    <a href="/">Home</a>
+                </div>
+                {% for c in nav %}
+                    <div>
+                        <a href="/posts/{{c.id}}">{{c.category_name}}</a>
+                    </div>
+                {% endfor %}
+                <div>
+                    <a href="/about">About</a>
+                </div>
+            </div>
+        </div>
+        <br /><br /><br />
+        <div class="list_block">
+            <h1>{{category.category_name}}</h1>
+            <br />
+            {% block content %}
+            {% endblock  %}
+        </div>
+        
+    </div>
+  </body>
+</html>

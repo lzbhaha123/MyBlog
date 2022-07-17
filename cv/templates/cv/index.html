@@ -1,0 +1,77 @@
+{% extends 'cv/public/base.html' %}
+{% block content  %}
+<div id="gate" class="accesses_place">
+
+    {% for c in categories %}
+        <div onclick="showList({{ c.id }})"><img src="{{c.category_image.url }} " /><p>{{ c.category_name }}</p></div>
+    {% endfor %}
+    <!--
+    <div onclick="showList(1)"><img src="~/images/projects.jpg" ><p>My Projects</p></div>
+    <div onclick="showList(2)"><img src="~/images/articles.jpg" ><p>My Articles</p></div>
+    <div onclick="showList(3)"><img src="~/images/experiences.jpg" ><p>My Experiences</p></div>
+    -->
+</div>
+
+{% for k,v in posts.items   %}
+
+<div id="list{{k}}" class="article_list">
+    <div class="head_column">
+        <div class="left_column"><i onclick="hideList({{k}})" class="fa fa-chevron-left fa-3x"></i></div>
+        <div class="right_column"><a class="nav-link text-dark" href="/posts/{{k}}"><i  class="fa fa-ellipsis-h fa-3x"></i></a></div>
+    </div>
+    <div class="list_content">
+        {% if v|length > 0 %}
+            {% for e in v  %}
+            <div class="content_block">
+                <div>
+                    <a href="/detail/{{e.id}}">
+                        <img src="{{e.post_image.url }} " >
+                        <div class="content_text">
+                            <p>{{e.post_title}}</p>
+                            {% if e.post_description != null %}
+                            <p>{{e.post_description|safe}}</p>
+                            {% else %}
+                            <br />
+                            {% endif %}
+                            
+                        </div>
+                        
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}  
+    </div>
+</div>
+
+    
+{% endfor %}
+
+
+
+
+
+
+
+
+<script>
+    function showList(e){
+        if(screen.width<821){
+            window.location.href = "/posts/"+e
+        }else{
+            document.getElementById("gate").classList.add("accesses_place_blur")
+
+            {% for c in categories %}
+                document.getElementById("list{{ c.id }}").classList.remove("show_article_list")
+            {% endfor %}
+        }
+
+        document.getElementById("list"+e).classList.add("show_article_list")
+    }
+    function hideList(e){
+        document.getElementById("gate").classList.remove("accesses_place_blur")
+        document.getElementById("list"+e).classList.remove("show_article_list")
+    }
+</script>
+
+{% endblock %}

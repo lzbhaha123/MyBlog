@@ -1,0 +1,65 @@
+{% extends 'cv/public/base2.html' %}
+{% block content %}
+<div class="profile_block">
+    <div class="pb_left">
+        <div>
+            {% load mathfilters %}
+            {% for s in skills %}
+            <div>
+                <div>{{s.skill_text}}</div>
+                <div class="progress">
+                    
+                    <div class="progress-bar" style="width: {{s.skill_level|mul:10}}%" role="progressbar" aria-valuenow="{{s.skill_level}}" aria-valuemin="0" aria-valuemax="10"></div>
+                  </div>
+            </div>
+            {% endfor %}
+
+           
+        </div>
+    </div>
+    <div class="pb_right">
+        <div class="detail_h">
+            <h1>{{profile.first_name}} {{profile.last_name}}</h1>
+            <div><div><b>Email:</b></div><a href="mailto:{{profile.email}}">{{profile.email}}</a></div>
+            <div><div><b>Phone:</b></div><a href="tel:{{profile.phone}}">{{profile.phone}}</a></div>
+            <div><div><b>Github:</b></div>
+                <a href="{{profile.github}}">{{ profile.github }}</a>
+            </div>
+            <div><div><b>Transcription:</b></div>
+                <a href="/media/{{profile.transcription}}">Click to Check</a>
+            </div>
+        </div>
+        <div class="detail_h">
+            <div><img src="{{profile.picture.url}}" /></div>
+        </div>
+        
+
+        
+        
+        
+        <div class="detail_h">
+            <div>
+            {{ profile.description|safe }}
+            </div>
+            <div class="referees">
+                {% for r in referees %}
+                <div>
+                    <h5>{{r.title}} {{r.first_name}} {{r.last_name}}</h5>
+                    <div>{{r.company}} </div>
+                    <div>{{r.postion}} </div>
+                    <div><div><b>Email:</b></div><a href="mailto:{{r.email}}">{{r.email}}</a></div>
+                    <div><div><b>Phone:</b></div><a href="tel:{{r.phone}}">{{r.phone}}</a></div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+
+
+
+<div></div>
+{% endblock  %}

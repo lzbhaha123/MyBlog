@@ -1,0 +1,22 @@
+{% extends 'cv/public/base2.html' %}
+{% block content %}
+
+
+<div class="row row-cols-3">
+    {% for p in posts %}
+        <div class="col-4">
+            <a href="/detail/{{p.id}}"> 
+            <div class="card list_card">
+              <img src="{{p.post_image.url }}" class="card-img-top ph" alt="...">
+              <div class="card-body tc">
+                <h5 class="card-title">{{p.post_title}}</h5>
+                {% if p.post_description != null %}
+                <div class="atc">{{p.post_description|safe}}</div>
+                {% endif %}
+              </div>
+            </div>
+            </a>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock  %}

@@ -1,0 +1,15 @@
+{% extends 'cv/public/base2.html' %}
+{% block content %}
+
+<a href="/posts/{{post.category.id}}">Back to list</a>
+<h1>{{post.post_title}}</h1>
+<div>
+    {{post.post_description|safe}}
+</div>
+<div>
+
+    {{post.post_content|safe}}
+
+</div>
+
+{% endblock  %}
